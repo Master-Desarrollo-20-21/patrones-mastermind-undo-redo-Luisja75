@@ -3,7 +3,7 @@ package usantatecla.mastermind.controllers;
 import usantatecla.mastermind.models.Game;
 import usantatecla.mastermind.models.State;
 
-public class ResumeController extends Controller {
+public class ResumeController extends Controller implements AcceptorController {
 
 	public ResumeController(Game game, State state) {
 		super(game, state);
@@ -18,7 +18,6 @@ public class ResumeController extends Controller {
 		}
 	}
 
-	@Override
 	public void accept(ControllersVisitor controllersVisitor) {
 		controllersVisitor.visit(this);
 	}

@@ -6,14 +6,12 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.PlayController;
 import usantatecla.mastermind.controllers.StartController;
 import usantatecla.mastermind.types.Color;
 import usantatecla.mastermind.types.Error;
 import usantatecla.mastermind.views.ErrorView;
 import usantatecla.mastermind.views.MessageView;
-import usantatecla.mastermind.views.graphics.ProposedCombinationView;
-import usantatecla.mastermind.views.graphics.SecretCombinationView;
 
 @SuppressWarnings("serial")
 class GameView extends JFrame {
@@ -47,11 +45,11 @@ class GameView extends JFrame {
 		this.setVisible(true);
 	}
 
-	void interact(ProposalController proposalController) {
+	void interact(PlayController playController) {
 		Error error;
 		do {
 			List<Color> colors = new ProposedCombinationView().read(this.proposalCombinationView.getCharacters());
-			error = proposalController.addProposedCombination(colors);
+			error = playController.addProposedCombination(colors);
 			if (error != null && this.proposalCombinationView.getCharacters() != "") {
 				JOptionPane.showMessageDialog(null, new ErrorView(error).getMessage(), "ERROR", JOptionPane.WARNING_MESSAGE);
 				error = null;
@@ -59,15 +57,15 @@ class GameView extends JFrame {
 			}
 		} while (error != null || this.proposalCombinationView.getCharacters() == "");
 		this.proposalCombinationView.resetCharacters();
-		this.proposedCombinationsView.add(proposalController);
-		this.drawGameOver(proposalController);
+		this.proposedCombinationsView.add(playController);
+		this.drawGameOver(playController);
 		this.setVisible(true);
 	}
 
-	private void drawGameOver(ProposalController proposalController) {
-		if (proposalController.isWinner() || proposalController.isLooser()) {
+	private void drawGameOver(PlayController playController) {
+		if (playController.isWinner() || playController.isLooser()) {
 			String message = "";
-			if (proposalController.isWinner()) {
+			if (playController.isWinner()) {
 				message = MessageView.WINNER.getMessage();
 			} else {
 				message = MessageView.LOOSER.getMessage();

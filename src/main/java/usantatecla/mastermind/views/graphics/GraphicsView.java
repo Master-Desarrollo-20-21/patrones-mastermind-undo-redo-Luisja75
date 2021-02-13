@@ -1,6 +1,6 @@
 package usantatecla.mastermind.views.graphics;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.PlayController;
 import usantatecla.mastermind.controllers.ResumeController;
 import usantatecla.mastermind.controllers.StartController;
 import usantatecla.mastermind.views.View;
@@ -19,8 +19,8 @@ public class GraphicsView extends View {
 	}
 
 	
-	public void visit(ProposalController proposalController) {
-		this.gameView.interact(proposalController);
+	public void visit(PlayController playController) {
+		this.gameView.interact(playController);
 	}
 
 	
