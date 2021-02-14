@@ -2,10 +2,10 @@ package usantatecla.mastermind.controllers;
 
 import java.util.List;
 
-import usantatecla.mastermind.models.Game;
-import usantatecla.mastermind.models.State;
+import usantatecla.mastermind.models.Session;
 import usantatecla.mastermind.types.Color;
 import usantatecla.mastermind.types.Error;
+
 
 public class PlayController extends Controller implements AcceptorController {
 
@@ -13,13 +13,12 @@ public class PlayController extends Controller implements AcceptorController {
 	private RedoController redoController;
 	private UndoController undoController;
 	
-	public PlayController(Game game, State state) {
-		super(game, state);
-		proposalController = new ProposalController(game, state);
-		redoController = new RedoController(game, state);
-		undoController = new UndoController(game, state);
+	public PlayController(Session session) {
+		super(session);
+		proposalController = new ProposalController(session);
+		redoController = new RedoController(session);
+		undoController = new UndoController(session);
 	}
-
 
 	public boolean isWinner() {
 		return this.proposalController.isWinner();
@@ -45,35 +44,25 @@ public class PlayController extends Controller implements AcceptorController {
 		return this.proposalController.getWhites(position);
 	}
 
-
-	public void undo() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public boolean undoable() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	public void redo() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public boolean redoable() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-
 	public Error addProposedCombination(List<Color> colors) {
-		// TODO Auto-generated method stub
 		return this.proposalController.addProposedCombination(colors);
 	}
-	
+		
+	public void undo() {
+		undoController.undo();	
+	}
+
+	public boolean isUndoable() {
+		return undoController.isUndoable();
+	}
+
+	public void redo() {
+		redoController.redo();		
+	}
+
+	public boolean isRedoable() {
+		return redoController.isRedoable();		
+	}
 	
 	public void accept(ControllersVisitor controllersVisitor) {
 		controllersVisitor.visit(this);

@@ -11,10 +11,11 @@ class UndoCommand extends Command {
 
   protected void execute() {
 	  this.playController.undo();
+	  this.showResult();
   }
 
   protected boolean isActive() {
-	  return this.playController.undoable();
+	  return this.playController.isUndoable();
   }
 
 }

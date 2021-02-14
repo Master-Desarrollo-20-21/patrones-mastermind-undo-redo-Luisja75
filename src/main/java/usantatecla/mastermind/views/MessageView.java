@@ -10,7 +10,8 @@ public enum MessageView {
 	WINNER("You've won!!! ;-)"),
 	LOOSER("You've lost!!! :-("),
 	UNDO_COMMAND("Undo: "),
-	REDO_COMMAND("Redo: ");
+	REDO_COMMAND("Redo: "),
+	CHOSSE_OPTION("Choose option: ");
 
 	private String message;
 	

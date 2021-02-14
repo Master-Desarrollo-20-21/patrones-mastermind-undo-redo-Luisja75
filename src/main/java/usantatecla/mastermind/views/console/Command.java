@@ -10,4 +10,12 @@ abstract class Command extends usantatecla.utils.Command {
     super(title);
     this.playController = playController;
   }
+  
+  protected void showResult() {
+	for (int i = 0; i < playController.getAttempts(); i++) {
+		new ProposedCombinationView(playController).write(i);
+		new ResultView(playController).writeln(i);
+	}  
+  }
+  
 }

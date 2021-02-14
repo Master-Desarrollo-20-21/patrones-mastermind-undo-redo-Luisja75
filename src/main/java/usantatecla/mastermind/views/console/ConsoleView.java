@@ -18,17 +18,14 @@ public class ConsoleView extends View {
 		this.proposalView = new ProposalView();
 		this.resumeView = new ResumeView();
 	}
-
 	
 	public void visit(StartController startController) {
 		this.startView.interact(startController);		
 	}
-
 	
 	public void visit(PlayController playController) {
 		this.proposalView.interact(playController);
 	}
-
 	
 	public void visit(ResumeController resumeController) {
 		this.resumeView.interact(resumeController);

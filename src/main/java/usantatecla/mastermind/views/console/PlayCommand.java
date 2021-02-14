@@ -29,10 +29,7 @@ class PlayCommand extends Command {
 		this.console.writeln();
 		new AttemptsView(playController).writeln();
 		new SecretCombinationView(playController).writeln();
-		for (int i = 0; i < playController.getAttempts(); i++) {
-			new ProposedCombinationView(playController).write(i);
-			new ResultView(playController).writeln(i);
-		}
+		this.showResult();
 		if (playController.isWinner()) {
 			this.console.writeln(MessageView.WINNER.getMessage());
 		} else if (playController.isLooser()) {
@@ -44,4 +41,5 @@ class PlayCommand extends Command {
   protected boolean isActive() {
     return true;
   }
+  
 }

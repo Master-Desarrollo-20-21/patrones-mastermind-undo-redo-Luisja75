@@ -12,11 +12,12 @@ class RedoCommand extends Command {
   @Override
   protected void execute() {
 	  this.playController.redo();
+	  this.showResult();
   }
 
   @Override
   protected boolean isActive() {
-	  return this.playController.redoable();
+	  return this.playController.isRedoable();
   }
 
 }

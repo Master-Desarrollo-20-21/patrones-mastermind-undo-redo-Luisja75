@@ -7,8 +7,10 @@ public abstract class Menu {
 
   private static final String OPTION = "Option? [1-#size]: ";
   private List<Command> commandList;
+  private String title;
 
-  public Menu() {
+  public Menu(String title) {
+	this.title = title;
     this.commandList = new ArrayList<Command>();
   }
 
@@ -41,6 +43,7 @@ public abstract class Menu {
   
   private void writeTitles(Console console, ArrayList<Command> commands) {
 	  console.writeln();
+	  console.writeln(this.title);
       for (int i = 0; i < commands.size(); i++) {
           console.writeln((i + 1) + ") " + commands.get(i).getTitle());
       }
@@ -49,4 +52,5 @@ public abstract class Menu {
   protected void addCommand(Command command) {
     this.commandList.add(command);
   }
+  
 }
